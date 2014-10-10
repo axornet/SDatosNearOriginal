@@ -1153,45 +1153,48 @@
 
             'OSCAR 
 
-            'T_Bundle 
-            ProgressBarAdd(pPgbGlobal)
-            lvstrExpSql =
-                "SELECT " & _
-                FieldAddNumber(pBizSystem, "id ") & " as id, " & _
-                IIf(pBizSystem, "1", "0") & " as sd_source ," & _
-                "name, " & _
-                "isDeleted, " & _
-                "cast(price as decimal(10,2)) as price " & _
-                "from Bundle  " & GC_LIMITRESULT
-            lvstrColumns = _
-                "id, " & _
-                "sd_source, " & _
-                "name, " & _
-                 "isDeleted, " & _
-                "price "
-            ' Le saque el If C_LINKED And False Then
-            If C_LINKED Then
-                If (pBizSystem) Then
-                    sSpeacialSqlDelete = "DELETE FROM T_Bundle where sd_source = 1"
-                    'sResulta += gfstr_ImportaLinked(goConNear, pDataBase, lvstrExpSql, "T_Paypal", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
-                    sResulta += gfstr_ImportaBulked(goConNear, goConnBizContent, lvstrExpSql, "T_Bundle", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
-                Else
-                    sSpeacialSqlDelete = "DELETE FROM T_Bundle where sd_source = 0"
-                    'sResulta += gfstr_ImportaLinked(goConNear, pDataBase, lvstrExpSql, "T_Paypal", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
-                    sResulta += gfstr_ImportaBulked(goConNear, goConnContent, lvstrExpSql, "T_Bundle", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
-                End If
-            Else
-                pPgbParcial.Minimum = 0
-                plblCurrentOp.Text = "Counting records..." : Application.DoEvents()
-                pPgbParcial.Maximum = gflng_GetNumReg(goConnContent, "SELECT COUNT(*) FROM Bundle")
-                sResulta += gfstr_Importa(goConnContent, lvstrExpSql, goConNear, "T_Bundle", True, pPgbParcial, plblCurrentOp, plblTable, pexError)
-            End If
+            'Oscar Octubre/2014 ----> sacada porque Lucas que dijo que no se usa mas
+            ''T_Bundle 
+            'ProgressBarAdd(pPgbGlobal)
+            'lvstrExpSql =
+            '    "SELECT " & _
+            '    FieldAddNumber(pBizSystem, "id ") & " as id, " & _
+            '    IIf(pBizSystem, "1", "0") & " as sd_source ," & _
+            '    "name, " & _
+            '    "isDeleted, " & _
+            '    "cast(price as decimal(10,2)) as price " & _
+            '    "from Bundle  " & GC_LIMITRESULT
+            'lvstrColumns = _
+            '    "id, " & _
+            '    "sd_source, " & _
+            '    "name, " & _
+            '     "isDeleted, " & _
+            '    "price "
+            '' Le saque el If C_LINKED And False Then
+            'If C_LINKED Then
+            '    If (pBizSystem) Then
+            '        sSpeacialSqlDelete = "DELETE FROM T_Bundle where sd_source = 1"
+            '        'sResulta += gfstr_ImportaLinked(goConNear, pDataBase, lvstrExpSql, "T_Paypal", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
+            '        sResulta += gfstr_ImportaBulked(goConNear, goConnBizContent, lvstrExpSql, "T_Bundle", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
+            '    Else
+            '        sSpeacialSqlDelete = "DELETE FROM T_Bundle where sd_source = 0"
+            '        'sResulta += gfstr_ImportaLinked(goConNear, pDataBase, lvstrExpSql, "T_Paypal", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
+            '        sResulta += gfstr_ImportaBulked(goConNear, goConnContent, lvstrExpSql, "T_Bundle", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
+            '    End If
+            'Else
+            '    pPgbParcial.Minimum = 0
+            '    plblCurrentOp.Text = "Counting records..." : Application.DoEvents()
+            '    pPgbParcial.Maximum = gflng_GetNumReg(goConnContent, "SELECT COUNT(*) FROM Bundle")
+            '    sResulta += gfstr_Importa(goConnContent, lvstrExpSql, goConNear, "T_Bundle", True, pPgbParcial, plblCurrentOp, plblTable, pexError)
+            'End If
 
-            ' Ojo que esta ahora toma la data de MARKETPLACE
+            '
+            'Ojo que esta ahora toma la data de MARKETPLACE
             'T_BundlePresentation 
-            ProgressBarAdd(pPgbGlobal)
-
+            'Oscar Octubre/2014 
+            '      Me construi una tabla que une el T_BundlePresentation con el codigo de magento de bundel y los codigos de presnetaiociones el content tool
             ' Agregue un group by para eliminar los repetido erroneos
+            ProgressBarAdd(pPgbGlobal)
 
             lvstrExpSql = <![CDATA[
 select sd_source, bundleId, presentationId from 
@@ -1208,23 +1211,7 @@ where subquery.presentationId is not null and
       subquery.bundleId > 0) pn
 group by pn.bundleId, pn.presentationId
 
-
-
 ]]>.Value
-
-            'select * from
-            '(select 0 as sd_source, bundle_id as bundleId , (SELECT cpei.value FROM catalog_product_entity_int cpei 
-            '    WHERE bundle_presentations.presentation_id = cpei.entity_id
-            '    AND cpei.attribute_id = 144 LIMIT 1) as 'presentationId'
-            'from bundle_presentations
-            'where is_fixed = 0
-            ') subquery
-            'where subquery.presentationId is not null and 
-            '      subquery.bundleId is not null  and
-            '      subquery.presentationId > 0 and
-            '      subquery.bundleId > 0
-
-          
 
             lvstrColumns = _
                 "sd_source, " & _
@@ -1247,45 +1234,46 @@ group by pn.bundleId, pn.presentationId
                 sResulta += gfstr_Importa(goMagento, lvstrExpSql, goConNear, "T_BundlePresentation", True, pPgbParcial, plblCurrentOp, plblTable, pexError)
             End If
 
-            'T_UserPresentationsBuy 
-            ProgressBarAdd(pPgbGlobal)
-            lvstrExpSql =
-                "SELECT " & _
-                FieldAddNumber(pBizSystem, "id ") & " as id, " & _
-                IIf(pBizSystem, "1", "0") & " as sd_source ," & _
-                FieldAddNumber(pBizSystem, "userId ") & " as userId, " & _
-                FieldAddNumber(pBizSystem, "entityId ") & " as entityId, " & _
-                "entityType, " & _
-                "presentations, " & _
-                "cast(price as decimal(10,2)) as price,  " & _
-                 "from_unixtime(created) as created " & _
-                "from UserPresentationsBuy  " & GC_LIMITRESULT
-            lvstrColumns = _
-                "id, " & _
-                "sd_source, " & _
-                "userId, " & _
-                "entityId, " & _
-                "entityType, " & _
-                "presentations, " & _
-                "price, " & _
-                "created "
-            ' Le saque el If C_LINKED And False Then
-            If C_LINKED Then
-                If (pBizSystem) Then
-                    sSpeacialSqlDelete = "DELETE FROM T_UserPresentationsBuy where sd_source = 1"
-                    'sResulta += gfstr_ImportaLinked(goConNear, pDataBase, lvstrExpSql, "T_Paypal", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
-                    sResulta += gfstr_ImportaBulked(goConNear, goConnBizContent, lvstrExpSql, "T_UserPresentationsBuy", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
-                Else
-                    sSpeacialSqlDelete = "DELETE FROM T_UserPresentationsBuy where sd_source = 0"
-                    'sResulta += gfstr_ImportaLinked(goConNear, pDataBase, lvstrExpSql, "T_Paypal", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
-                    sResulta += gfstr_ImportaBulked(goConNear, goConnContent, lvstrExpSql, "T_UserPresentationsBuy", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
-                End If
-            Else
-                pPgbParcial.Minimum = 0
-                plblCurrentOp.Text = "Counting records..." : Application.DoEvents()
-                pPgbParcial.Maximum = gflng_GetNumReg(goConnContent, "SELECT COUNT(*) FROM UserPresentationsBuy")
-                sResulta += gfstr_Importa(goConnContent, lvstrExpSql, goConNear, "T_UserPresentationsBuy", True, pPgbParcial, plblCurrentOp, plblTable, pexError)
-            End If
+            'Oscar Octubre/2014 -----> la saque porque me dice LUCAS que esta no va mas
+            ''T_UserPresentationsBuy 
+            'ProgressBarAdd(pPgbGlobal)
+            'lvstrExpSql =
+            '    "SELECT " & _
+            '    FieldAddNumber(pBizSystem, "id ") & " as id, " & _
+            '    IIf(pBizSystem, "1", "0") & " as sd_source ," & _
+            '    FieldAddNumber(pBizSystem, "userId ") & " as userId, " & _
+            '    FieldAddNumber(pBizSystem, "entityId ") & " as entityId, " & _
+            '    "entityType, " & _
+            '    "presentations, " & _
+            '    "cast(price as decimal(10,2)) as price,  " & _
+            '     "from_unixtime(created) as created " & _
+            '    "from UserPresentationsBuy  " & GC_LIMITRESULT
+            'lvstrColumns = _
+            '    "id, " & _
+            '    "sd_source, " & _
+            '    "userId, " & _
+            '    "entityId, " & _
+            '    "entityType, " & _
+            '    "presentations, " & _
+            '    "price, " & _
+            '    "created "
+            '' Le saque el If C_LINKED And False Then
+            'If C_LINKED Then
+            '    If (pBizSystem) Then
+            '        sSpeacialSqlDelete = "DELETE FROM T_UserPresentationsBuy where sd_source = 1"
+            '        'sResulta += gfstr_ImportaLinked(goConNear, pDataBase, lvstrExpSql, "T_Paypal", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
+            '        sResulta += gfstr_ImportaBulked(goConNear, goConnBizContent, lvstrExpSql, "T_UserPresentationsBuy", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
+            '    Else
+            '        sSpeacialSqlDelete = "DELETE FROM T_UserPresentationsBuy where sd_source = 0"
+            '        'sResulta += gfstr_ImportaLinked(goConNear, pDataBase, lvstrExpSql, "T_Paypal", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
+            '        sResulta += gfstr_ImportaBulked(goConNear, goConnContent, lvstrExpSql, "T_UserPresentationsBuy", lvstrColumns, plblCurrentOp, plblTable, sSpeacialSqlDelete, pexError)
+            '    End If
+            'Else
+            '    pPgbParcial.Minimum = 0
+            '    plblCurrentOp.Text = "Counting records..." : Application.DoEvents()
+            '    pPgbParcial.Maximum = gflng_GetNumReg(goConnContent, "SELECT COUNT(*) FROM UserPresentationsBuy")
+            '    sResulta += gfstr_Importa(goConnContent, lvstrExpSql, goConNear, "T_UserPresentationsBuy", True, pPgbParcial, plblCurrentOp, plblTable, pexError)
+            'End If
 
             If Not (pBizSystem) Then
                 'T_MasterReferral
@@ -1374,6 +1362,7 @@ group by pn.bundleId, pn.presentationId
 
             Dim oCmd As SqlClient.SqlCommand
 
+            'Oscar Octubre/2014 puse los precios en cero
             ' Tiene que estar primero porque inicializa algunos indices
             ProgressBarAdd(pPgbGlobal)
             oCmd = goConNear.CreateCommand
@@ -1384,7 +1373,8 @@ group by pn.bundleId, pn.presentationId
                 "UPDATE T_Presentation Set FromStore = 1, " & _
                 "OriginalName = T2.Name, " & _
                 "OriginalCreatedDate = Convert(Date,t2.Created), " & _
-                "OriginalPrice = T2.Price, " & _
+                "OriginalPrice = 0, " & _
+                "Price = 0, " & _
                 "publisherId = T2.publisherId, " & _
                 "initiativeId = T2.initiativeId, " & _
                 "gradeId = T2.gradeId, " & _
@@ -1393,8 +1383,9 @@ group by pn.bundleId, pn.presentationId
                 "subjectId = T2.subjectId, " &
                 "authorId = T2.authorId " &
                 "FROM T_Presentation, T_Presentation T2 where " & _
-                "t_Presentation.parentid <> 0  And T_Presentation.parentId  = t2.id and (t2.userId = 1152 or t2.userId = 133900)  "  ' si pablo me da el ok cambio esto y le agrego que el T_presentation.userid=1152
+                "t_Presentation.parentid <> 0  And T_Presentation.parentId  = t2.id and (t2.userId in " & GC_AUTHORS & " )  "  ' si pablo me da el ok cambio esto y le agrego que el T_presentation.userid=1152
             oCmd.ExecuteNonQuery()
+            'oscar octubre/2014
 
             ProgressBarAdd(pPgbGlobal)
             oCmd = goConNear.CreateCommand
@@ -1965,22 +1956,23 @@ group by pn.bundleId, pn.presentationId
                          "update T_User Set [sdn_EngagedUserV2_SessValid] = (SELECT MIN(session_date) From T_Sessions Where teacher_id = T_User.id And not lead_uid is null and T_Sessions.is_Deleted = 0 and T_Sessions.runningsum >=5)"
             oCmd.ExecuteNonQuery()
 
-            ProgressBarAdd(pPgbGlobal)
-            oCmd = goConNear.CreateCommand
-            oCmd.CommandTimeout = 999999
-            plblCurrentOp.Text = "Fix Bundle Prices" : Application.DoEvents()
-            sResulta += "Processing: " & plblCurrentOp.Text & " at " & Now.ToString & vbCrLf
-            oCmd.CommandText = _
-                "update T_Presentation " & _
-                "   set T_Presentation.price = t2.priceunit, " & _
-                "       T_Presentation.OriginalPrice = t2.priceunit " & _
-                "from T_presentation, (select T_Presentation.id, T_UserPresentationsBuy.price/(LEN(presentations) - LEN(REPLACE(presentations, ',', ''))+1) as priceunit from T_UserPresentationsBuy " & _
-                "                       join T_BundlePresentation on T_UserPresentationsBuy.entityId = T_BundlePresentation.bundleId " & _
-                "                       join T_Presentation on T_BundlePresentation.presentationId = T_Presentation.parentId " & _
-                "                       where entityType = 'Bundle' and T_UserPresentationsBuy.userId = T_Presentation.userId " & _
-                "                   ) t2 " & _
-                "where(T_Presentation.id = T2.Id)"
-            oCmd.ExecuteNonQuery()
+            'Oscar Octubre/2014 sacado este calculo porque no tiene que basarse en esto tiene que basarse en la info que viene de magento
+            'ProgressBarAdd(pPgbGlobal)
+            'oCmd = goConNear.CreateCommand
+            'oCmd.CommandTimeout = 999999
+            'plblCurrentOp.Text = "Fix Bundle Prices" : Application.DoEvents()
+            'sResulta += "Processing: " & plblCurrentOp.Text & " at " & Now.ToString & vbCrLf
+            'oCmd.CommandText = _
+            '    "update T_Presentation " & _
+            '    "   set T_Presentation.price = t2.priceunit, " & _
+            '    "       T_Presentation.OriginalPrice = t2.priceunit " & _
+            '    "from T_presentation, (select T_Presentation.id, T_UserPresentationsBuy.price/(LEN(presentations) - LEN(REPLACE(presentations, ',', ''))+1) as priceunit from T_UserPresentationsBuy " & _
+            '    "                       join T_BundlePresentation on T_UserPresentationsBuy.entityId = T_BundlePresentation.bundleId " & _
+            '    "                       join T_Presentation on T_BundlePresentation.presentationId = T_Presentation.parentId " & _
+            '    "                       where entityType = 'Bundle' and T_UserPresentationsBuy.userId = T_Presentation.userId " & _
+            '    "                   ) t2 " & _
+            '    "where(T_Presentation.id = T2.Id)"
+            'oCmd.ExecuteNonQuery()
 
 
 ZonaUpdates:
