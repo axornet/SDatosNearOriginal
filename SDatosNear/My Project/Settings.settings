@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="LogFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Datamart\Log\</Value>
+    </Setting>
+    <Setting Name="GoogleFolderIn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Datamart\TXTStatsGoogle</Value>
+    </Setting>
+    <Setting Name="GoogleFolderProcessed" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Datamart\TXTStatsGoogle\Processed</Value>
+    </Setting>
+    <Setting Name="AppleFolderIn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Datamart\TXTStatsApple</Value>
+    </Setting>
+    <Setting Name="AppleFolderProcessed" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Datamart\TXTStatsApple\Processed</Value>
+    </Setting>
+    <Setting Name="PayPalFolderIn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Datamart\TXTPaypal</Value>
+    </Setting>
+    <Setting Name="PayPalFolderProcessed" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Datamart\TXTPaypal\Processed</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

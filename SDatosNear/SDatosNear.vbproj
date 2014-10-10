@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A2928EF4-C283-4B5B-BA9F-09CA9B05886F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>SDatosNear.My.MyApplication</StartupObject>
+    <RootNamespace>SDatosNear</RootNamespace>
+    <AssemblyName>SDatosNear</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>false</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>SDatosNear.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>SDatosNear.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.6.5\Assemblies\v4.0\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DataVisualization" />
+    <Reference Include="System.Web.DataVisualization.Design" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.DynamicData.Design" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Entity.Design" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Extensions.Design" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Web.RegularExpressions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApareoClass.vb" />
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="cExportSF.vb" />
+    <Compile Include="cImportApple.vb" />
+    <Compile Include="cImportContent.vb" />
+    <Compile Include="cImportGoogle.vb" />
+    <Compile Include="cImportPayPal.vb" />
+    <Compile Include="cImportPhoenix.vb" />
+    <Compile Include="cImportSF.vb" />
+    <Compile Include="cIpProcessing.vb" />
+    <Compile Include="CSemaphore.vb" />
+    <Compile Include="cTransacSDNear.vb" />
+    <Compile Include="cMail.vb" />
+    <Compile Include="cTest.vb" />
+    <Compile Include="frmImportApple.Designer.vb">
+      <DependentUpon>frmImportApple.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportApple.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportGoogle.Designer.vb">
+      <DependentUpon>frmImportGoogle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportGoogle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportPayPal.Designer.vb">
+      <DependentUpon>frmImportPayPal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportPayPal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTransacSDNear.Designer.vb">
+      <DependentUpon>frmTransacSDNear.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTransacSDNear.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmApareao.Designer.vb">
+      <DependentUpon>frmApareao.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmApareao.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTruncateAll.Designer.vb">
+      <DependentUpon>frmTruncateAll.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTruncateAll.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportBizContent.Designer.vb">
+      <DependentUpon>frmImportBizContent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportBizContent.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportBizPhoenix.Designer.vb">
+      <DependentUpon>frmImportBizPhoenix.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportBizPhoenix.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExportSF.Designer.vb">
+      <DependentUpon>frmExportSF.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmExportSF.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFatalError.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportAll.Designer.vb">
+      <DependentUpon>frmImportAll.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportAll.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportContent.Designer.vb">
+      <DependentUpon>frmImportContent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportContent.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportPhoenix.Designer.vb">
+      <DependentUpon>frmImportPhoenix.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportPhoenix.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportSF.Designer.vb">
+      <DependentUpon>frmImportSF.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportSF.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSplash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mGlobales.vb" />
+    <Compile Include="mMain.vb" />
+    <Compile Include="cTruncateAll.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmImportApple.resx">
+      <DependentUpon>frmImportApple.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImportGoogle.resx">
+      <DependentUpon>frmImportGoogle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImportPayPal.resx">
+      <DependentUpon>frmImportPayPal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTransacSDNear.resx">
+      <DependentUpon>frmTransacSDNear.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmApareao.resx">
+      <DependentUpon>frmApareao.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExportSF.resx">
+      <DependentUpon>frmExportSF.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFatalError.resx">
+      <DependentUpon>frmFatalError.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImportAll.resx">
+      <DependentUpon>frmImportAll.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImportBizContent.resx">
+      <DependentUpon>frmImportBizContent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImportContent.resx">
+      <DependentUpon>frmImportContent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImportPhoenix.resx">
+      <DependentUpon>frmImportPhoenix.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImportSF.resx">
+      <DependentUpon>frmImportSF.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSplash.resx">
+      <DependentUpon>frmSplash.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImportBizPhoenix.resx">
+      <DependentUpon>frmImportBizPhoenix.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTruncateAll.resx">
+      <DependentUpon>frmTruncateAll.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
