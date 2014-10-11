@@ -580,9 +580,9 @@ order by increment_id desc
 
         ' 8125 Es para el downgrade Referral
 
-        Dim cFACTURAS() = {"2000", "2050", "2100", "2150", "2200", "2250", "3000", "3050", "3100", "3150", "3200", "3250", "3300"}
+        Dim cFACTURAS() = {"2000", "2050", "2100", "2150", "2200", "2250", "2300", "2350", "2400", "3000", "3050", "3100", "3150", "3200", "3250", "3300"}
         Dim cDOWNGRADES() = {"8000", "8050", "8100", "8125", "8150", "8200", "8250", "8300", "8350"}
-        Dim cFACTURAS_PRODUCTO() = {"2000", "2050", "2100", "2150", "2200", "2250"}
+        Dim cFACTURAS_PRODUCTO() = {"2000", "2050", "2100", "2150", "2200", "2250", "2300", "2350", "2400"}
         Dim cFACTURAS_CONTENIDO() = {"3000", "3050", "3100", "3150", "3200", "3250", "3300"}
 
         '***********************************************
@@ -721,28 +721,29 @@ order by increment_id desc
                         contpayments = contpayments + 1
                         arraid.Add(RDR.Item("id"))
                         arra2payments.Add(contpayments)
-                        If RDR.Item("unity") = "M" Then
-                            esUsuarioPago = "M"
-                        Else
-                            esUsuarioPago = "Y"
+                        If Not (IsDBNull(RDR.Item("unity"))) Then
+                            If RDR.Item("unity") = "M" Then
+                                esUsuarioPago = "M"
+                            Else
+                                esUsuarioPago = "Y"
+                            End If
                         End If
                     End If
 
-
                     If cFACTURAS_PRODUCTO.Contains(RDR.Item("TRC_Code")) Then
-                        acumrevenueproduct = acumrevenueproduct + RDR.Item("price")
+                        acumrevenueproduct = acumrevenueproduct + IIf(IsDBNull(RDR.Item("price")), 0, RDR.Item("price"))
                     End If
 
                     If cFACTURAS_CONTENIDO.Contains(RDR.Item("TRC_Code")) Then
-                        acumrevenuecontenido = acumrevenuecontenido + RDR.Item("price")
+                        acumrevenuecontenido = acumrevenuecontenido + IIf(IsDBNull(RDR.Item("price")), 0, RDR.Item("price"))
                     End If
 
 
                     If cFACTURAS_PRODUCTO.Contains(RDR.Item("TRC_Code")) Then
 
                         lastTRC_Code = RDR.Item("TRC_Code")
-                        lastregularity = RDR.Item("regularity")
-                        lastunity = RDR.Item("unity")
+                        lastregularity = IIf(IsDBNull(RDR.Item("regularity")), 0, RDR.Item("regularity"))
+                        lastunity = IIf(IsDBNull(RDR.Item("unity")), "", RDR.Item("unity"))
 
                         ' Guardo la primera factura de producto que se le hizo
                         If firstProductSale = "" Then
@@ -824,7 +825,12 @@ order by increment_id desc
             For i = 0 To arra3userid.Count - 1
 
                 Dim d1 As Date = arra19DateOfFirstUpgrade.Item(i)
+                Dim limitedate As Date
 
+                limitedate = New DateTime(2000, 1, 1)
+                If d1 < limitedate Then
+                    d1 = limitedate
+                End If
 
                 lCommand = lCommand & "update T_User " & _
                                    "    set TRC_Code = '" & arra5TRC_Code.Item(i) & "', " & _

@@ -4,7 +4,7 @@ Imports System.IO
 Imports System.Text.RegularExpressions
 
 Module mGlobales
-    Public GC_NEARCONN As String = "Server=localhost;Database=NearPod;Trusted_Connection=True"
+    Public GC_NEARCONN As String = "Server=192.168.200.250;Database=NearPod;Trusted_Connection=True"
     Public GC_NEARCONNTEST As String = "Server=localhost;Database=NearPodTest;Trusted_Connection=True"
 
     Public GC_AUTHORS As String = "(133900,129918,391520,391524,391525,391532,391546,391555,391557,391588,391660,395163,414055,433114,454793,481114,485398,519824,519831,99262,519916,519922,439783,519927,519933,1152,133494,519997,519993,519980,519945,520019)"
